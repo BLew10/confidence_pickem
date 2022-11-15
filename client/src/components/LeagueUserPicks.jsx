@@ -70,24 +70,6 @@ const LeagueUserPicks = (props) => {
 
 
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8000/api/users/getloggedinuser`, { withCredentials: true })
-    //         .then(res => {
-    //             setUser(res.data.results)
-    //             setLeagues(res.data.results.leagues)
-
-    //         })
-    //         .catch(err => console.log(err))
-
-    //     if (user._id === league.commissioner) {
-    //         console.log(user._id)
-    //         console.log(league.commissioner)
-    //         console.log(league.commissioner)
-    //         setIsCommissioner(true)
-    //     }
-
-    // }, [])
-
     const handleLiveWinners = (winners) => {
         setLiveWinners({ ...winners })
     }
