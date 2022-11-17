@@ -11,8 +11,7 @@ module.exports.index = (request, response) => {
 }
 
 module.exports.createLeague = (request, response) => {
-    console.log(request.body)
-    League.exists({ name: request.body.name })
+    League.exists({ name: request.body.name.toLowerCase() })
         .then(leagueExists => {
             if (leagueExists) {
                 response.json({ message: "League already exists" })
@@ -34,12 +33,10 @@ module.exports.addUserToNewLeague = (request, response) => {
         
         let picks = {}
         picks[request.params.id] = {}
-        console.log(picks,"JELLO")
 
 
     League.findOneAndUpdate({ _id: request.params.id }, { $push: { users: userID } }, { new: true, useFindAndModify: false })
         .then(updatedLeague => {
-            console.log(updatedLeague)
             response.json(updatedLeague)
         })
         .catch(err => response.status(400).json(err))
@@ -50,15 +47,6 @@ module.exports.addUserToNewLeague = (request, response) => {
         })
         .catch(err => console.log(err))
     
-        // let picks = {}
-        // picks[request.params.id] = {}
-
-        // User.findOneAndUpdate({ _id: userID }, { $set: { picks: picks } }, { new: true, runValidators: true })
-        // .then(updatedUser => {
-        //     console.log('updated')
-        //     response.json(updatedUser)
-        // })
-        // .catch(err => response.status(400).json(err))
 };
 
 module.exports.addUserToExistingLeague = async (req, res) => {
@@ -77,7 +65,6 @@ module.exports.addUserToExistingLeague = async (req, res) => {
     }
 
     const userInLeague = await League.exists({_id: req.params.id, users: { $in: [userID] } });
-    console.log(req.params.id )
 
         if (userInLeague) {
             console.log("You are already in this league")

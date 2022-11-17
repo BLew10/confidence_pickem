@@ -33,7 +33,7 @@ const JoinLeague = (props) => {
         }, { withCredentials: true })
             .then(res => {
                 navigate("/users/home")
-                console.log(res)})
+            })
             .catch(err => console.log(err))
 
 
@@ -42,8 +42,7 @@ const JoinLeague = (props) => {
 
     return (
         <div>
-            <NavBar />
-            <h1>Hello {user.firstName}</h1>
+            <NavBar currentPage="Join A League" />
             <SearchLeagues joinLeague={joinLeague} />
         </div>
     )

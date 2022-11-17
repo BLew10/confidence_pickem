@@ -29,7 +29,6 @@ module.exports.createUser = (request, response) => {
 
             }
         })
-
 }
 
 
@@ -46,48 +45,21 @@ module.exports.getUser = (request, response) => {
         .catch(err => response.json(err));
 }
 
-// module.exports.updateUser = (request, response) => {
-
-//     const { newLeaguePicks, leagueID, weekID, weekPicks } = request.body
-//     let newPicks = {}
-//     User.find({ _id: request.params.id }).populate("leagues")
-//         .then(user => { 
-//             // console.log("Found User",user)
-//             console.log(user[0].hasOwnProperty("picks"))
-//             if (user[0].picks.hasOwnProperty(leagueID)) {
-//                 console.log("exists")
-//                 newPicks[leagueID] = {...user[0].picks[leagueID], ...weekPicks}
-//                 // console.log(newPicks)
-//             } else {
-//                 console.log("New League Picks created")
-//                 newPicks = {...user[0].picks, ...newLeaguePicks}
-//                 console.log(newPicks)
-//             }
-//             User.findOneAndUpdate({ _id: request.params.id }, { $set: { picks: newPicks } }, { new: true, runValidators: true })
-//                 .then(updatedUser => {
-//                     console.log('updated')
-//                     response.json(updatedUser)
-//                 })
-//                 .catch(err => response.status(400).json(err))
-//         })
-//         .catch(err => response.json(err));
-// }
 
 module.exports.updateUser = (request, response) => {
 
     const { newLeaguePicks, leagueID, weekID, weekPicks } = request.body
+
     let newPicks = {}
     User.find({ _id: request.params.id }).populate("leagues")
         .then(user => { 
             if (user[0].picks && user[0].picks[leagueID]) {
                 newPicks[leagueID] = {...user[0].picks[leagueID], ...weekPicks}
-    
             } else {
                 newPicks = {...newLeaguePicks}
             }
             User.findOneAndUpdate({ _id: request.params.id }, { $set: { picks: newPicks } }, { new: true, runValidators: true })
                 .then(updatedUser => {
-                    console.log('updated')
                     response.json(updatedUser)
                 })
                 .catch(err => response.status(400).json(err))

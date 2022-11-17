@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import LeagueUserPicks from '../components/LeagueUserPicks';
 import NavBar from '../components/NavBar';
+import { WeekProvider } from '../context/CurrentWeek';
 import {
     Link,
     useNavigate, useParams
@@ -11,7 +12,7 @@ import {
 
 const LeagueDisplay = (props) => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id, weekID } = useParams()
     const [league, setLeague] = useState({})
 
 
@@ -21,8 +22,10 @@ const LeagueDisplay = (props) => {
 
     return (
         <div className=''>
-            <NavBar currentPage="League Display"/>
-            <LeagueUserPicks  leagueID={id} />
+            <NavBar currentPage="League Display" />
+            <WeekProvider>
+                <LeagueUserPicks leagueID={id} />
+            </WeekProvider>
         </div>
     )
 }

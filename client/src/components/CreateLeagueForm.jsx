@@ -29,22 +29,22 @@ const CreateLeagueForm = (props) => {
 
 
     return (
-        <form onSubmit={onSubmitHandler}  className="my-2 flex flex-col justify- w-full lg:w-1/3 mx-auto">
+        <form onSubmit={onSubmitHandler}  className="my-2 flex flex-col justify-between items-center text-white mx-auto w-full">
             {errors.map((err, index) => <p className='text-red-500 font-bold' key={index}>{err}</p>)}
-            <p className='flex my-3 justify-between mx-2'>
-                <label  className="basis-1/2    font-bold ">League Name: </label><br />
-                <input className='border-2 border-slate-300 rounded w-full basis-1/2  md:basis-3/4 ' type="text" onChange={(e) => changeHandler(e)} value={league.name} name="name" />
+            <p className='flex my-5 w-full justify-between'>
+                <label  className="basis-1/2    font-bold ">League Name: </label>
+                <input className='border-2 border-slate-300 rounded w-full basis-1/2  md:basis-3/4 text-black' type="text" onChange={(e) => changeHandler(e)} value={league.name} name="name" />
             </p>
-            <p p className='flex my-3 justify-between mx-2'>
-                <label className="basis-1/2    font-bold">Password: </label><br />
-                <input className='border-2 border-slate-300 rounded w-full basis-1/2  md:basis-3/4 ' type="text" onChange={(e) => changeHandler(e)} value={league.password} name="password" />
+            <p p className='flex my-5  w-full justify-between '>
+                <label className="basis-1/2    font-bold">Password: </label>
+                <input className='border-2 border-slate-300 rounded w-full basis-1/2  md:basis-3/4 text-black ' type="text" onChange={(e) => changeHandler(e)} value={league.password} name="password" />
             </p>
 
-            <p p className='flex my-3 justify-between mx-2 '>
-                <label className="basis-1/2  font-bold ">Confirm Password: </label><br />
-                <input className='border-2 border-slate-300 rounded w-full basis-1/2 md:basis-3/4 ' type="text" onChange={(e) => changeHandler(e)} value={league.confirmPassword} name="confirmPassword" />
+            <p p className='flex my-5  w-full justify-between  '>
+                <label className="basis-1/2  font-bold ">Confirm Password: </label>
+                <input className='border-2 border-slate-300 rounded w-full basis-1/2 md:basis-3/4 text-black ' type="text" onChange={(e) => changeHandler(e)} value={league.confirmPassword} name="confirmPassword" />
             </p>
-            <input className='p-1 bg-indigo-400 rounded w-2/3 mx-auto hover:cursor-pointer hover:scale-105 hover:bg-indigo-200 font-semibold text-white' type="submit" />
+            <input className='p-1 bg-[#98b9ff] rounded w-2/3 mx-auto hover:cursor-pointer hover:scale-105 hover:bg-indigo-200 font-semibold text-white' type="submit" />
         </form>
     )
 }
