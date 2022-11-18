@@ -20,7 +20,7 @@ const WeekLiveResults = (props) => {
 
 
     useEffect(() => {
-        axios.get(`http://api.sportradar.us/nfl/official/trial/v7/en/games/2022/REG/${week}/schedule.json?api_key=wvt4t5gk8ynbr6ysc2ydxp5s`)
+        axios.get(`http://api.sportradar.us/nfl/official/trial/v7/en/games/2022/REG/${week}/schedule.json?api_key=p8q425as6ugsav33c86v5bvw`)
             .then(res => {
                 let weekGames = res.data.week.games
                 setGames(res.data.week.games)
@@ -72,9 +72,11 @@ const WeekLiveResults = (props) => {
                 })
 
                 setWinners({ ...finalWinners })
-  
+
                 handleLiveWinners({ ...finalWinners })
-        
+
+
+
 
             })
     }, [week]);
@@ -88,23 +90,23 @@ const WeekLiveResults = (props) => {
                 {games.map(game =>
 
                     played ?
-                        
-                            <div className='flex flex-col justify-between items-center basis-1/4 my-3 odd:bg-[#211f52] even:bg-[#181042]  rounded  '>
-                                <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center ${winners[game.id].alias} ${winners[game.id].tie ? "bg-indigo-300" : ""}`}>{winners[game.id].winner}</p>
-                                <p className={`basis-1/4 font-bold ${!winners[game.id].tie ? "text-green-500 " : "text-white"}`}>{winners[game.id].winner_score}</p>
 
-                                <p className={`basis-1/4 font-bold ${!winners[game.id].tie ? "text-red-500 " : "text-white"}`}>{winners[game.id].loser_score}</p>
-                                <p className={`p-1 font-bold hover:scale-105 text-sm h-20 basis-1/2 w-full text-center flex justify-center items-center ${winners[game.id].tie ? "bg-indigo-300" : "bg-red-100"}`}>{winners[game.id].loser}</p>
-                            </div>
-                        
+                        <div className='flex flex-col justify-between items-center basis-1/4 my-3 odd:bg-[#211f52] even:bg-[#181042]  rounded  '>
+                            <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center ${winners[game.id].alias} ${winners[game.id].tie ? "bg-indigo-300" : ""}`}>{winners[game.id].winner}</p>
+                            <p className={`basis-1/4 font-bold ${!winners[game.id].tie ? "text-green-500 " : "text-white"}`}>{winners[game.id].winner_score}</p>
+
+                            <p className={`basis-1/4 font-bold ${!winners[game.id].tie ? "text-red-500 " : "text-white"}`}>{winners[game.id].loser_score}</p>
+                            <p className={`p-1 font-bold hover:scale-105 text-sm h-20 basis-1/2 w-full text-center flex justify-center items-center ${winners[game.id].tie ? "bg-indigo-300" : "bg-red-100"}`}>{winners[game.id].loser}</p>
+                        </div>
+
                         :
-                        
-                            <div className='flex flex-col justify-between basis-1/4 my-3  items-center odd:bg-[#211f52] even:bg-[#181042] text-white'>
-                                <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center`}>{winners[game.id].home} </p>
-                                <p>vs</p>
-                                <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center `}>{winners[game.id].away}</p>
-                            </div>
-                       
+
+                        <div className='flex flex-col justify-between basis-1/4 my-3  items-center odd:bg-[#211f52] even:bg-[#181042] text-white'>
+                            <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center`}>{winners[game.id].home} </p>
+                            <p>vs</p>
+                            <p className={`p-1 font-bold hover:scale-105 text-sm basis-1/2 flex justify-center items-center w-full text-center `}>{winners[game.id].away}</p>
+                        </div>
+
 
 
 

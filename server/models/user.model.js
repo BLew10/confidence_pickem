@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
     picks: {
         type: Object
     }
+    //next time i would make picks its own model and each set of weeks would have a week, user, league and array of picks
 
 }, { timestamps: true });
 

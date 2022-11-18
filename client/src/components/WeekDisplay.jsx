@@ -16,54 +16,73 @@ const WeekDisplay = (props) => {
     const [currWeek, setCurrWeek] = useState(weeksRemainingNumbers[0])
     const currWinners = {}
 
-    
+
     useEffect(() => {
-        axios.get(`http://api.sportradar.us/nfl/official/trial/v7/en/games/2022/REG/schedule.json?api_key=wvt4t5gk8ynbr6ysc2ydxp5s`)
-            .then(res => {
-                let remaining = {}
-                let remainingCount = []
 
+        const options = {
+            method: 'GET',
+            url: 'https://nfl-schedule.p.rapidapi.com/v1/schedules',
+            headers: {
+                'X-RapidAPI-Key': '6e5b9e70e9msh5e4a513b7fe17d0p18f3d9jsn1e2a034022c4',
+                'X-RapidAPI-Host': 'nfl-schedule.p.rapidapi.com'
+            }
+        };
 
-                let weeks = res.data.weeks
-                weeks.forEach((week, i) => {
-                    if (week.games[0].status !== "closed") {
-                        remaining[i + 1] = week
-                        remainingCount.push(i + 1)
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+        console.log("PAST THIS CALL")
 
-                    }
-                })
-
-                setWeeksRemaining({ ...remaining })
-                setWeekRemainingNumbers([...remainingCount])
-                setCurrWeek(remainingCount[0])
-                
-                let weekGames = remaining[remainingCount[0]].games
-                let gameCount = []
-                weekGames.forEach((game, i) => {
-                    gameCount.push(i + 1)
-                    if (!currWinners.hasOwnProperty([game.id])) {
-                        currWinners[game.id] = {
-                            winner: "",
-                            points: 0,
-                            gameID: game.id,
-                            earned: 0
-                        }
-                    }
-                })
-                setGames([...remaining[remainingCount[0]].games])
-                setPoints([...gameCount])
-                setWinners({ ...currWinners })
+        // axios.get(`http://api.sportradar.us/nfl/official/trial/v7/en/games/2022/REG/schedule.json?api_key=p8q425as6ugsav33c86v5bvw`)
+        //     .then(res => {
+        //         let remaining = {}
+        //         let remainingCount = []
+        //         console.log("I made this call on week display")
 
 
 
-                axios.get(`http://localhost:8000/api/leagues/${leagueID}`, { withCredentials: true })
-                    .then(res => {
-                        setLeagueName(res.data[0].name)
-                    })
-                    .catch(err => console.log(err))
+        //         let weeks = res.data.weeks
+        //         weeks.forEach((week, i) => {
+        //             if (week.games[0].status !== "closed") {
+        //                 remaining[i + 1] = week
+        //                 remainingCount.push(i + 1)
 
-            })
-            .catch(err => console.log(err))
+        //             }
+        //         })
+
+        //         setWeeksRemaining({ ...remaining })
+        //         setWeekRemainingNumbers([...remainingCount])
+        //         setCurrWeek(remainingCount[0])
+
+        //         let weekGames = remaining[remainingCount[0]].games
+        //         let gameCount = []
+        //         weekGames.forEach((game, i) => {
+        //             gameCount.push(i + 1)
+        //             if (!currWinners.hasOwnProperty([game.id])) {
+        //                 currWinners[game.id] = {
+        //                     winner: "",
+        //                     points: 0,
+        //                     gameID: game.id,
+        //                     earned: 0
+        //                 }
+        //             }
+        //         })
+        //         setGames([...remaining[remainingCount[0]].games])
+        //         setPoints([...gameCount])
+        //         setWinners({ ...currWinners })
+
+
+
+        //         axios.get(`http://localhost:8000/api/leagues/${leagueID}`, { withCredentials: true })
+        //             .then(res => {
+        //                 setLeagueName(res.data[0].name)
+        //             })
+        //             .catch(err => console.log(err))
+
+        //     })
+        //     .catch(err => console.log(err))
     }, []);
 
 
@@ -117,7 +136,7 @@ const WeekDisplay = (props) => {
         handleWeek(e.target.value)
         setCurrWeek(e.target.value)
         handleConfirmTemplate(e.target.value)
-    
+
     }
 
     const handleConfirmTemplate = (weekNum) => {

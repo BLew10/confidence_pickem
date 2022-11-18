@@ -56,7 +56,8 @@ const Home = (props) => {
 
     return (
 
-        <div className='rounded-xl my-[10%]  w-1/2 lg:w-1/3 mx-auto bg-gradient-to-r p-[4px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]'>
+        <div className='rounded-xl my-[10%]  w-3/4 lg:w-1/3 mx-auto bg-gradient-to-r p-[4px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]'>
+            
             <div className='w-full mx-auto  bg-[#181042] py-3 px-5 rounded-xl'>
                 <h1 className='p-4 h-full bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6]  to-[#9333EA] bg-clip-text text-transparent font-bold  basis-1/4 font-bold text-center my-3 text-5xl'>Play Action Picks</h1>
                 <div className='w-full font-bold '>
