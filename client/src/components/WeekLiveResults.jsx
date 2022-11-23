@@ -20,10 +20,13 @@ const WeekLiveResults = (props) => {
 
 
     useEffect(() => {
-        axios.get(`http://api.sportradar.us/nfl/official/trial/v7/en/games/2022/REG/${week}/schedule.json?api_key=p8q425as6ugsav33c86v5bvw`)
+        axios.get(`http://localhost:8000/api/weeks/${week}`, {withCredentials: true})
             .then(res => {
-                let weekGames = res.data.week.games
-                setGames(res.data.week.games)
+                console.log(res.data)
+                // let weekGames = res.data.week.games
+                let weekGames = res.data[0].games
+                // setGames(res.data.week.games)
+                setGames(res.data[0].games)
                 weekGames.forEach((game, i) => {
 
                     if (game.status === "closed") {

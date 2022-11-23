@@ -146,7 +146,7 @@ const LeagueUserPicks = (props) => {
                             <p className='text-sm text-slate-500 font-bold mx-auto text-center mb-3'>The rest of the league's picks will display once the the first game of the week kicks off!</p>
                             {user.picks && user.picks[leagueID] && user.picks[leagueID][week] ? user.picks[leagueID][week].map(pick =>
                                 <>
-                                    <div className={`flex justify-between [&>*]:mx-5  w-full lg:w-1/2 font-bold mx-auto my-3 ${liveWinners && liveWinners[pick.gameID] && liveWinners[pick.gameID].status === "Not Played" ? "text-white" : ""}`}>
+                                    <div className={`flex justify-between [&>*]:mx-5  w-full lg:w-1/2 font-bold mx-auto my-3 text-white ${liveWinners && liveWinners[pick.gameID] && liveWinners[pick.gameID].status === "Not Played" ? "text-slate-100" : ""}`}>
                                         <p >{pick.winner}</p>
                                         <p > {pick.points}</p>
                                     </div>

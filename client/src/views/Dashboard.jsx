@@ -22,6 +22,7 @@ const Dashboard = (props) => {
     let newLeaguePicks = {}
     let newWeekPicks = {}
 
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users/getloggedinuser`, { withCredentials: true })
             .then(res => {
@@ -42,6 +43,7 @@ const Dashboard = (props) => {
         newLeaguePicks[leagueID] = {}
         newLeaguePicks[leagueID][weekForPicks] = incomingPicks
         newWeekPicks[weekForPicks] = incomingPicks
+
 
         axios.put(`http://localhost:8000/api/users/${user._id}`, {
             newLeaguePicks: newLeaguePicks, leagueID: leagueID, weekId: weekForPicks, weekPicks: newWeekPicks

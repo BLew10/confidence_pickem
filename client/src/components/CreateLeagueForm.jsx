@@ -29,7 +29,7 @@ const CreateLeagueForm = (props) => {
 
 
     return (
-        <form onSubmit={onSubmitHandler}  className="my-2 flex flex-col justify-between items-center text-white mx-auto w-full">
+        <form onSubmit={onSubmitHandler}  className="my-2 flex flex-col justify-between items-center text-white mx-auto w-full lg:w-1/2">
             {errors.map((err, index) => <p className='text-red-500 font-bold' key={index}>{err}</p>)}
             <p className='flex my-5 w-full justify-between'>
                 <label  className="basis-1/2    font-bold ">League Name: </label>
